@@ -1,0 +1,38 @@
+<section class="menu section bd-container" id="menu">
+    <div class="container">
+        <div class="status_box w-full lg:w-2/3 mx-auto">
+            <div class="flex items-center justify-between mb-12">
+                <h1 class="text-xl font-bold">
+                    SUIVI DE VOTRE COMMANDE
+                </h1>
+
+                <h6 class="bg-white rounded-full text-green-600 text-xs">
+                    <%= order._id%>
+                </h6>
+                <input 
+                id="hiddenInput" 
+                type="hidden" 
+                value="<%= JSON.stringify(order) %>">
+            </div>
+            <ul class="">
+                <li class="status_line text-xl pb-16 " data-status="order_placed">
+                    <span>Recue</span>
+                </li>
+                <li class="status_line text-xl pb-16"  data-status="confirmed">
+                    <span> Confirmée</span>
+                </li>
+                <li class="status_line text-xl pb-16"  data-status="prepared">
+                     <span>En préparation</span>
+                </li>
+                <li class="status_line text-xl pb-16"  data-status="delivered">
+                    <span>En livraison</span>
+                    
+                </li>
+                <li class="status_line text-xl"  data-status="completed">
+                    <span>Livrée</span>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</section>

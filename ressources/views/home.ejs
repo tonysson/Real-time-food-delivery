@@ -1,0 +1,38 @@
+<main class="l-main">
+         <!--========== HOME ==========-->
+            <section class="home" id="home">
+                <div class="home__container bd-container bd-grid">
+                    <div class="home__data">
+                        <h1 class="home__title">Suivez-la !</h1>
+                        <h2 class="home__subtitle">Partagez-la <br> 
+                            Prête en 5 min
+                        </h2>
+                        <a href="/cart" class="button">Commandez</a>
+                    </div>
+                    <img src="./img/hero.png" alt="" class="home__img">
+                </div>
+            </section>
+             <!--========== MENU ==========-->
+            <section class="menu section bd-container" id="menu">
+                <span class="section-subtitle">Nos </span>
+                <h2 class="section-title">Pizzas</h2>
+                <div class="menu__container bd-grid">
+                <% pizzas.forEach(function(pizza){ %>
+                        <div class="menu__content">
+                            <img src="/img/<%= pizza.image %>" alt="<%= pizza.name %>" class="menu__img">
+                            <h3 class="menu__name">
+                                <%= pizza.name %>
+                            </h3>
+                            <span class=" rounded-full uppercase text-xs py-1 text-center menu__detail">
+                            <%= pizza.size %> 
+                            </span>
+                            <span class="menu__preci">
+                                <%= pizza.price %> €
+                            </span>
+                            <button data-pizza="<%= JSON.stringify(pizza)%>"  class="button menu__button add_to_cart">
+                             <i class="fas fa-cart-plus"></i>
+                            </button>
+                    </div>
+                <%  }) %>
+            </section>
+    </main>
