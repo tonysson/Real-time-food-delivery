@@ -9,8 +9,11 @@ const MongoDbStore = require('connect-mongo')(session);
 require('dotenv').config();
 const mongoose = require('mongoose');
 const Emitter = require('events')
+const cors = require('cors')
 
 const app = express()
+// to insure security when app deploys into heroku
+app.enable('trust proxy');
 
 const PORT = process.env.PORT || 5500
 
@@ -79,11 +82,22 @@ app.use(expressLayout); // nous permet de communiquer avec notre layout.ejs
 app.set('views' , path.join(__dirname , '/ressources/views'));
 app.set('view engine' , 'ejs')
 
+// implement CORS
+app.use(cors());
+app.options('*',cors())
+
+
 //routes
 require('./routes/web')(app)
 app.use((req, res) => {
     res.status(404).render('errors/404')
 })
+
+//prepare for production
+if(process.env.NODE_ENV === 'production'){
+  app.use(express.static(path.join(__dirname , '/frontend/build')))
+  app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'frontend' , 'build', 'index.html')))
+}
 
 // server
 const server = app.listen(PORT  , () => {
